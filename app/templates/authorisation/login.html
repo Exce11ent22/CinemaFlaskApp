@@ -1,0 +1,17 @@
+{% extends 'authorisation/auth_base.html' %}
+
+{% block form %}
+
+<h1 class="h3 mb-3 fw-normal">Выполните вход</h1>
+
+<div class="my-2">
+    <input type="email" name="email" class="form-control" placeholder="Адрес электронной почты">
+</div>
+<div class="my-2">
+    <input type="password" name="password" class="form-control" placeholder="Пароль">
+</div>
+
+<button class="my-2 btn btn-success" type="submit">Войти</button>
+<a href="{{ url_for('auth.signup') }}" class="my-2 btn btn-warning">Зарегистрироваться</a>
+
+{% endblock %}

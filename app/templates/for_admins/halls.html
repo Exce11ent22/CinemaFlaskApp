@@ -1,0 +1,37 @@
+{% extends 'for_admins/admin_base.html' %}
+
+{% block title %}
+Halls
+{% endblock %}
+
+{% block body %}
+<form action="{{ url_for( 'cinema.admin_halls' ) }}" method="post">
+    <input type="text" name="name" placeholder="Name of hall" required><br>
+    <input type="number" name="seats" placeholder="Number of seats" required><br>
+    <input type="number" name="rows" placeholder="Number of rows" required><br>
+    <input type="text" name="category" placeholder="Hall category" required><br>
+    <input type="submit" value="Add cinema hall" class="btn btn-success">
+</form>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Seats</th>
+        <th>Rows</th>
+        <th>Category</th>
+    </tr>
+    {% for hall in halls %}
+    <tr>
+        <th>{{ hall.id }}</th>
+        <td>{{ hall.name }}</td>
+        <td>{{ hall.seats }}</td>
+        <td>{{ hall.rows }}</td>
+        <td>{{ hall.category }}</td>
+        <td><a class="btn btn-danger" href="{{ url_for('cinema.admin_hall_delete', id=hall.id) }}">Delete</a></td>
+        <td><a class="btn btn-warning" href="{{ url_for('cinema.admin_hall_edit', id=hall.id) }}">Edit</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'for_users/base.html' %}
+
+{% block title %}
+Profile of {{ user.name }}
+{% endblock %}
+
+{% block body %}
+
+<div class="card text-black bg-warning mb-3" style="max-width: 18rem;">
+    <div class="card-header">{{ user.name }}</div>
+    <div class="card-body">
+        <p class="card-text">User Email: {{ user.email }}</p>
+        <p class="card-text">User ID: {{ user.id }}</p>
+        <p class="card-text">Tickets was bought: {{ tau|length }}</p>
+    </div>
+</div>
+
+<h1>Purchase history</h1>
+
+<table class="table">
+    <tr>
+        <th>Ticket id</th>
+        <th>Session id</th>
+        <th>Seat</th>
+        <th>Movie</th>
+        <th>Price</th>
+    </tr>
+    {% for el in tau %}
+    <tr>
+        <th>{{ ticket.query.get(el.ticket_id).id }}</th>
+        <td>{{ ticket.query.get(el.ticket_id).session_id }}</td>
+        <td>{{ ticket.query.get(el.ticket_id).seat }}</td>
+        <td>{{ movie.query.get(session.query.get(ticket.query.get(el.ticket_id).session_id).movie_id).title }}</td>
+        <td>{{ session.query.get(ticket.query.get(el.ticket_id).session_id).price }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

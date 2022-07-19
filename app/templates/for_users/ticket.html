@@ -1,0 +1,21 @@
+{% extends 'for_users/base.html' %}
+
+{% block title %}
+Ticket {{ ticket.id }}
+{% endblock %}
+
+{% block body %}
+
+<h1 align="center">Thanks for purchase!</h1>
+
+<div class="card text-black bg-warning mb-3" style="max-width: 18rem;">
+    <div class="card-header">Your check</div>
+    <div class="card-body">
+        <p class="card-text">Ticket ID: {{ ticket.id }}</p>
+        <p class="card-text">Row : {{ row }}</p>
+        <p class="card-text">Seat : {{ ticket.seat }}</p>
+        <p class="card-text">Price: {{ session.query.get(ticket.session_id).price }}</p>
+    </div>
+</div>
+
+{% endblock %}

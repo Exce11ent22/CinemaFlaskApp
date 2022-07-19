@@ -1,0 +1,29 @@
+{% extends 'for_admins/admin_base.html' %}
+
+{% block title %}
+Edit movie
+{% endblock %}
+
+{% block body %}
+
+<div class="card text-black bg-warning mb-3" style="max-width: 18rem;">
+    <div class="card-header">{{ movie.title }}</div>
+    <div class="card-body">
+        <p class="card-text">Release date: {{ movie.rel_date }}</p>
+        <p class="card-text">Duration: {{ movie.duration }} min</p>
+        <p class="card-text">Genres: {{ movie.genres }}</p>
+        <p class="card-text">Countries: {{ movie.countries }}</p>
+    </div>
+</div>
+
+
+<form action="{{ url_for( 'cinema.admin_movies_edit', id=movie.id ) }}" method="post">
+    <input type="text" name="title" placeholder="Title of movie" required><br>
+    <input type="date" name="rel_date" placeholder="Release date"><br>
+    <input type="number" name="duration" placeholder="Duration (in minutes)"><br>
+    <input type="text" name="genres" placeholder="Genres"><br>
+    <input type="text" name="countries" placeholder="Countries of production"><br>
+    <input type="submit" value="Edit movie data" class="btn btn-success">
+</form>
+
+{% endblock %}

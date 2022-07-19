@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+    <style type="text/css"></style>
+</head>
+<body class="text-center" data-new-gr-c-s-check-loaded="14.1039.0" data-gr-ext-installed="">
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<span class=flashes>
+        {% for message in messages %}
+        <p class="alert alert-danger">{{ message }}</p>
+        {% endfor %}
+    </span>
+{% endif %}
+{% endwith %}
+
+<form class="form-signin" method="post">
+    {% block form %}{% endblock%}
+    <p class="mt-5 mb-3 text-muted">Awesome Cinema 2021</p>
+</form>
+
+
+<div at-magnifier-wrapper="">
+    <div class="at-theme-light">
+        <div class="at-base notranslate" translate="no">
+            <div class="Z1-AJ" style="top: 0px; left: 0px;"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

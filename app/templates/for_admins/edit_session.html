@@ -1,0 +1,28 @@
+{% extends 'for_admins/admin_base.html' %}
+
+{% block title %}
+Edit session
+{% endblock %}
+
+{% block body %}
+
+<div class="card text-black bg-warning mb-3" style="max-width: 18rem;">
+    <div class="card-header">{{ session.id }}</div>
+    <div class="card-body">
+        <p class="card-text">Date and time of start: {{ session.date }}</p>
+        <p class="card-text">Hall ID: {{ session.cinema_hall_id }} ({{ hall.query.get(session.cinema_hall_id).name }} ({{ hall.query.get(session.cinema_hall_id).category }}))</p>
+        <p class="card-text">Movie ID: {{ session.movie_id }} ({{ movie.query.get(session.movie_id).title }})</p>
+        <p class="card-text">Price: {{ session.price }}</p>
+    </div>
+</div>
+
+
+<form action="{{ url_for( 'cinema.admin_session_edit', id=session.id ) }}" method="post">
+    <input type="datetime-local" name="date" placeholder="Start of session" required><br>
+    <input type="number" name="hall_id" placeholder="Hall ID" required><br>
+    <input type="number" name="movie_id" placeholder="Movie ID" required><br>
+    <input type="number" name="price" placeholder="Session price" required><br>
+    <input type="submit" value="Edit session" class="btn btn-success">
+</form>
+
+{% endblock %}

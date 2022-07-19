@@ -1,0 +1,27 @@
+{% extends 'for_admins/admin_base.html' %}
+
+{% block title %}
+Edit hall
+{% endblock %}
+
+{% block body %}
+
+<div class="card text-black bg-warning mb-3" style="max-width: 18rem;">
+    <div class="card-header">{{ hall.name }}</div>
+    <div class="card-body">
+        <p class="card-text">Number of seats: {{ hall.seats }}</p>
+        <p class="card-text">Number of rows: {{ hall.rows }}</p>
+        <p class="card-text">Hall category: {{ hall.category }}</p>
+    </div>
+</div>
+
+
+<form action="{{ url_for( 'cinema.admin_hall_edit', id=hall.id ) }}" method="post">
+    <input type="text" name="name" placeholder="Name of hall" required><br>
+    <input type="number" name="seats" placeholder="Number of seats" required><br>
+    <input type="number" name="rows" placeholder="Number of rows" required><br>
+    <input type="text" name="category" placeholder="Hall category" required><br>
+    <input type="submit" value="Edit cinema hall" class="btn btn-success">
+</form>
+
+{% endblock %}

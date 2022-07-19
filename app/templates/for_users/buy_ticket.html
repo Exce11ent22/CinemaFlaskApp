@@ -1,0 +1,32 @@
+{% extends 'for_users/base.html' %}
+
+{% block title %}
+Buy ticket
+{% endblock %}
+
+{% block body %}
+
+<h1 align="center">Screen here!</h1>
+<table class="table table-striped">
+    {% for line in tickets %}
+    <tr>
+        <th>Row {{ loop.index }}</th>
+        {% for ticket in line %}
+        <td><a href="{{ url_for('cinema.ticket', id=ticket.id, row=loop.index) }}" {% if ticket.sold %}class="btn btn-danger mx1"{% else %}class="btn btn-success mx1"{% endif %}>{{ ticket.seat }}</a></td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="card text-black bg-warning mb-3" style="max-width: 18rem;">
+    <div class="card-header">Buy ticket on: {{ session.id }}</div>
+    <div class="card-body">
+        <p class="card-text">Date and time of start: {{ session.date }}</p>
+        <p class="card-text">Hall: {{ hall.query.get(session.cinema_hall_id).name }} ({{ hall.query.get(session.cinema_hall_id).category }})</p>
+        <p class="card-text">Movie: {{ movie.query.get(session.movie_id).title }}</p>
+        <p class="card-text">Price: {{ session.price }}</p>
+    </div>
+</div>
+
+
+{% endblock %}
